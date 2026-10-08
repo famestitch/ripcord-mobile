@@ -112,20 +112,25 @@ class VoiceScreen extends StatelessWidget {
   Widget _levelMeter() {
     return AnimatedBuilder(
       animation: s.audioBackend.micLevelDb,
-      builder: (_, __) {
-        final db = s.audioBackend.micLevelDb.value;
-        final t = ((db + 60) / 60).clamp(0.0, 1.0);
-        final bars = (t * 20).round();
-        final meter = '${List.filled(bars, '#').join()}${List.filled(20 - bars, '-').join()}';
+      builder: (ctx, ___) {
+        final double db = s.audioBackend.micLevelDb.value;
+        final double frac = ((db + 60.0) / 60.0).clamp(0.0, 1.0);
+        final int bars = (frac * 20.0).round();
+        final StringBuffer buf = StringBuffer("MIC LEVEL  ");
+        for (int i = 0; i < 20; i++) {
+          buf.write(i < bars ? "#" : "-");
+        }
+        buf.write("  ");
+        buf.write(db.toStringAsFixed(0));
+        buf.write(" dB");
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('MIC LEVEL  $meter  ${db.toStringAsFixed(0)} dB',
-                style: const TextStyle(fontFamily: 'monospace', fontSize: 12)),
-            const Text('Meter hile = mic + gain live hai (Discord transmit ready)',
+            Text(buf.toString(), style: const TextStyle(fontFamily: "monospace", fontSize: 12)),
+            const Text("Meter hile = mic + gain live hai (Discord transmit ready)",
                 style: TextStyle(color: Colors.grey, fontSize: 12)),
           ],
-        ),
+        );
       },
     );
   }

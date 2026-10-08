@@ -578,7 +578,7 @@ Future<void> showQuickSwitcher(BuildContext context, Session s, void Function(Ma
                             title: Text('${c['name']}'),
                             onTap: () {
                               Navigator.pop(ctx);
-                              open(c, s.guildId ?? '');
+                              open(Map<String, dynamic>.from(c as Map), s.guildId ?? '');
                             }),
                     for (final d in s.dms)
                       if (dmName(d).toLowerCase().contains(ctrl.text.toLowerCase()))
