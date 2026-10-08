@@ -588,7 +588,7 @@ Future<void> showQuickSwitcher(BuildContext context, Session s, void Function(Ma
                             title: Text(dmName(d)),
                             onTap: () {
                               Navigator.pop(ctx);
-                              open({'id': (d as Map)['id'], 'name': dmName(d), 'type': 1}, '');
+                              open(<String, dynamic>{'id': (d as Map)['id'], 'name': dmName(d), 'type': 1}, '');
                             }),
                   ],
                 ),

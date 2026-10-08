@@ -116,10 +116,11 @@ class VoiceScreen extends StatelessWidget {
         final db = s.audioBackend.micLevelDb.value;
         final t = ((db + 60) / 60).clamp(0.0, 1.0);
         final bars = (t * 20).round();
+        final meter = '${List.filled(bars, '#').join()}${List.filled(20 - bars, '-').join()}';
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('MIC LEVEL  ${'#' * bars}${'-' * (20 - bars)}  ${db.toStringAsFixed(0)} dB',
+            Text('MIC LEVEL  $meter  ${db.toStringAsFixed(0)} dB',
                 style: const TextStyle(fontFamily: 'monospace', fontSize: 12)),
             const Text('Meter hile = mic + gain live hai (Discord transmit ready)',
                 style: TextStyle(color: Colors.grey, fontSize: 12)),

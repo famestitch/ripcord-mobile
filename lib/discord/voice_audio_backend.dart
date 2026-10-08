@@ -51,7 +51,7 @@ abstract class VoiceAudioBackend {
 /// Default backend — saaf error ke saath fail hota hai.
 /// Connection manager isko dekh kar 'audio-backend-missing' status me jata hai
 /// aur native wiring judte hi khud start ho jata hai (rejoin ki zarurat nahi).
-class StubVoiceAudioBackend implements VoiceAudioBackend {
+class StubVoiceAudioBackend extends VoiceAudioBackend {
   static const msg =
       'Native audio backend wired nahi: libopus (encode/decode) + libsodium (encrypt) '
       'ka FFI chahiye. Transport (region bypass/resume/rejoin) phir bhi live hai.';
