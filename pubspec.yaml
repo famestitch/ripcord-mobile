@@ -1,0 +1,26 @@
+name: ripcord_mobile
+description: Ripcord-jaisa lightweight Discord client — phone (Android/iOS) native, Flutter.
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: '>=3.4.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  http: ^1.2.0
+  web_socket_channel: ^3.0.0
+  flutter_secure_storage: ^9.0.0
+  record: ^7.1.1            # mic capture: 48kHz mono PCM16 stream, echoCancel+noiseSuppress
+  opus_dart: ^3.0.1         # libopus encode/decode (needs opus_flutter lib at runtime)
+  opus_flutter: ^3.0.3      # libopus .so/.dylib loader (Android+iOS)
+  sodium: ^4.1.1+2          # libsodium (build hooks se auto-build, no manual setup)
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
